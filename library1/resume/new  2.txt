@@ -1,0 +1,7 @@
+#x_img
+		{
+			position:absolute;height:225px;width:1000px;z-index:3;margin-top:50px;
+			transition:all 10s;background-color:pink;
+			-webkit-animation-play-state:paused;
+			-webkit-transform:translate(0px,0px);
+		}

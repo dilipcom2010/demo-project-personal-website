@@ -1,0 +1,78 @@
+<html>
+<head>
+	<style>
+		.main1
+		{
+			height:400px;width:800px;float:left;border:1px solid blue;
+		}
+		.slidebar
+		{
+			height:400px; width:40px;float:left;border:1px solid grey;
+		}
+		.button1
+		{
+			height:400px;width:40px; position:absolute;z-index:99;background-color:grey;
+		}
+		.content1
+		{
+			height:400px;width:800px;position:absolute;z-index:50;background-color:blue;
+			-webkit-transform:translate(-100px,0px);
+		}
+		.slide
+		{
+			height:15px;width:880px;background-color:lightgrey;margin-top:500px;position:absolute;border-radius:4px;
+		}
+		.slidebutton
+		{
+			height:15px;width:400px;background-color:pink;border-radius:4px;
+			transition:all 0s;
+		}
+	</style>
+	
+	<script>
+	var last=0; var lx=0;
+		function slide(e)
+		{
+			var element = document.getElementById("slide1");
+			var position = element.getBoundingClientRect();
+			var element1 = document.getElementById("slidebutton1");
+			var position1 = element1.getBoundingClientRect();
+			var l1 = position1.left; var r1 = position1.right; 
+			var t1 = position1.top; var b1=position1.bottom;
+			var x1 = position.left; 
+			var y1=position.right;
+			//var y = position.top; 
+			//var yr=position.bottom;
+			x=e.clientX; y=e.clientY;
+			//document.getElementById("button1").innerHTML=l1+":L<br>"+r1+":R<br>"+t1+":T<br>B"+b1+"x:"+x+"y:"+y+"lst"+last;
+			//last=last+1;
+			//document.write(x+" "+y+" "+xr+" "+yr);
+		 if(x>=l1 && x<=r1 && y>=t1 && y<=b1)
+		  {
+		   if(l1!=x1 && r1!=y1)
+			{
+			  if(l1>x1 && r1<y1)
+			  {
+				if(lx<x){last=last+3;}
+				if(lx>x){last=last-3;}
+				lx=x;
+				
+					//document.getElementById("button1").innerHTML=x+":x<br>"+y+":y<br>"+xr+":xr<br>yr"+yr;
+					//document.getElementById("slidebutton1").style.webkitTransform="rotate(30deg) translate(100px,0px)";
+					document.getElementById("slidebutton1").style.webkitTransform = "translate("+last+"px,0px)";
+				
+		      }
+			} 
+			else if(x1==l1){document.getElementById("slidebutton1").style.webkitTransform = "translate("+last+3+"px,0px)";last=3;}
+			else{last=last-3;document.getElementById("slidebutton1").style.webkitTransform = "translate("+last+"px,0px)";}
+		  }	
+		}
+	</script>
+</head>
+<body>
+<div class="slidebar" id="slidebar1"><div class="button1" id="button1"></div></div>
+<div class="main1" id="main1"><div class="content1" id="content1"></div></div>
+<div class="slidebar" id="slidebar2"><div class="button1" id="button2"></div></div>
+<div class="slide" id="slide1"  onmousemove="slide(event)"><div class="slidebutton" id="slidebutton1"></div></div>
+</body>
+</html>
